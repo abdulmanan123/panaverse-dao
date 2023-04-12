@@ -1,14 +1,17 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
 
-  if (localStorage.getItem("user")) {
-    router.push("/");
-  }
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      router.push("/");
+    }
+  }, []);
 
   const [form, setForm] = useState({
     email: "",
