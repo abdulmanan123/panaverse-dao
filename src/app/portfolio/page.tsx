@@ -142,10 +142,7 @@ export default async function Portfolio() {
           </div>
 
           <div>
-            <div
-              className="relative bg-cover bg-center bg-no-repeat py-8"
-              style="background-image: url(bg-hero.jpg)"
-            >
+            <div className="relative bg-cover bg-center bg-no-repeat py-8">
               <div className="absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to bg-cover bg-center bg-no-repeat"></div>
 
               <div className="container relative z-30 pt-20 pb-12 sm:pt-56 sm:pb-48 lg:pt-64 lg:pb-48">
