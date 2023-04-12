@@ -6,8 +6,8 @@ export default function Home() {
   const router = useRouter();
 
   if (localStorage.getItem("user") != null) {
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user", user);
+    // const user = JSON.parse(localStorage.getItem("user"));
+    // console.log("user", user);
   } else {
     router.push("/login");
   }
