@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, useToast } from "@chakra-ui/react";
 
-const ActiveDeveloper = ({ user }) => {
+const ActiveDeveloper = (user: any) => {
   const router = useRouter();
   const toast = useToast();
 
@@ -40,11 +40,12 @@ const ActiveDeveloper = ({ user }) => {
       }
     } catch (error) {
       setIsLoading(false);
-      toast({
-        title: error,
-        position: "top-right",
-        status: "error",
-      });
+      alert(error);
+      // toast({
+      //   title: error,
+      //   position: "top-right",
+      //   status: "error",
+      // });
     }
   };
 
