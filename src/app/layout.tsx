@@ -1,4 +1,7 @@
 import "./globals.css";
+import ChakraWrapper from "@/views/ChakraWrapper";
+import Header from "@/views/Header";
+import Footer from "@/views/Footer";
 
 export const metadata = {
   title: "Panaverse DAO",
@@ -14,9 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="px-4 py-8 w-full min-h-screen bg-slate-100">
+        {/* <main className="px-4 py-8 w-full min-h-screen bg-slate-100"> */}
+        <ChakraWrapper>
+          <Header></Header>
           {children}
-        </main>
+          <Footer></Footer>
+        </ChakraWrapper>
+        {/* </main> */}
       </body>
     </html>
   );

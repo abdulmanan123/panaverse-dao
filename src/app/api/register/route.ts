@@ -12,7 +12,7 @@ export async function POST(request: Request) {
         const conn = postgres({
           ssl: require,
         });
-        const result = await conn.unsafe(`INSERT INTO users(first_name, last_name, email, password, role) VALUES ('${body.firstName}','${body.lastName}','${body.email}','${body.password}','developer')`);
+        const result = await conn.unsafe(`INSERT INTO users(name, company_name, designation, email, password, role, status) VALUES ('${body.name}','${body.companyName}','${body.designation}','${body.email}','${body.password}','developer', false)`);
         return new NextResponse(JSON.stringify({success:true, message:"Successfully register"}));
       }
   } catch (error) {

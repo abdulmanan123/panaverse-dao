@@ -2,9 +2,11 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Button, useToast } from "@chakra-ui/react";
 
 const Login = () => {
   const router = useRouter();
+  const toast = useToast();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -18,6 +20,8 @@ const Login = () => {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChange = (event: any) => {
     setForm({
       ...form,
@@ -27,6 +31,7 @@ const Login = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch(`/api/login`, {
         method: "POST",
@@ -37,21 +42,31 @@ const Login = () => {
         body: JSON.stringify(form),
         cache: "no-store",
       });
+
       if (!response.ok) {
+        setIsLoading(false);
         throw new Error("Something went Wrong");
       }
+
       const result = await response.json();
 
+      toast({
+        title: result.message,
+        position: "top-right",
+        status: result.success ? "success" : "error",
+      });
+      setIsLoading(false);
       if (result.success) {
-        //alert(result.message);
-        console.log("result.user", result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
         router.push("/");
-      } else {
-        alert(result.message);
       }
     } catch (error) {
-      alert(error);
+      setIsLoading(false);
+      toast({
+        title: error,
+        position: "top-right",
+        status: "error",
+      });
     }
   };
 
@@ -90,9 +105,19 @@ const Login = () => {
             onChange={handleChange}
           />
 
-          <button type="submit" className="link signup-link">
+          {/* <button type="submit" className="link signup-link">
             Login
-          </button>
+          </button> */}
+
+          <Button
+            type="submit"
+            isLoading={isLoading}
+            loadingText="Loading"
+            colorScheme="teal"
+            variant="outline"
+          >
+            Login
+          </Button>
         </form>
       </div>
     </section>
