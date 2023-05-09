@@ -62,11 +62,12 @@ const Login = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      toast({
-        title: error,
-        position: "top-right",
-        status: "error",
-      });
+      alert(error);
+      // toast({
+      //   title: error,
+      //   position: "top-right",
+      //   status: "error",
+      // });
     }
   };
 
